@@ -26,7 +26,7 @@ export const DetailComponent = () => {
     getMemberDetail("brauliodiez").then((memberCollection) => {
       setMember(memberCollection);
     });
-  });
+  }, []);
 
   return (
     <>
