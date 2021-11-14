@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { getOrganizationMemberCollection } from "../../api";
 
 export const ListComponent = () => {
@@ -14,7 +15,9 @@ export const ListComponent = () => {
     <>
       <ul>
         {memberCollection.map((member) => (
-          <li key={member.login}>{member.login}</li>
+          <li key={member.login}>
+            <Link to={`/organization/${member.login}`}>{member.login}</Link>
+          </li>
         ))}
       </ul>
     </>

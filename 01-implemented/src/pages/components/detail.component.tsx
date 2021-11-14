@@ -1,0 +1,46 @@
+import React from "react";
+import { useParams } from "react-router-dom";
+import { getMemberDetail } from "../../api";
+
+interface MemberDetailEntity {
+  id: string;
+  login: string;
+  name: string;
+  company: string;
+  bio: string;
+}
+
+const createDefaultMemberDetail = () => ({
+  id: "",
+  login: "",
+  name: "",
+  company: "",
+  bio: "",
+});
+
+export const DetailComponent = () => {
+  const { loginSlug } = useParams();
+
+  const [member, setMember] = React.useState<MemberDetailEntity>(
+    createDefaultMemberDetail()
+  );
+
+  React.useEffect(() => {
+    if (loginSlug) {
+      getMemberDetail(loginSlug).then((memberCollection) => {
+        setMember(memberCollection);
+      });
+    }
+  }, [loginSlug]);
+
+  return (
+    <>
+      <h2>Hello from Detail page</h2>
+      <p> id: {member.id}</p>
+      <p> login: {member.login}</p>
+      <p> name: {member.name}</p>
+      <p> company: {member.company}</p>
+      <p> bio: {member.bio}</p>
+    </>
+  );
+};
