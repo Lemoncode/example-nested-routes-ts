@@ -8,7 +8,7 @@ export const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="organization" element={<OrganizationPage />}>
+        <Route path="/organization" element={<OrganizationPage />}>
           <Route path=":loginSlug" element={<DetailComponent />} />
         </Route>
       </Routes>
